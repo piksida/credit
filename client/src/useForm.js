@@ -2,15 +2,15 @@ import { useState } from 'react'
 import validateInfo from './validateInfo';
 
 const useForm = () => {
-    const [values, setValues] = useState({
-        cardName: '',
+    const initialState = {
         cardNumber: '',
-        cardType: '',
         cardExpiration: '',
         cardSecurityCode: '',
-        cardPostalCode: '',
+        cardAmount: '',
         focus: ''
-    })
+    };
+
+    const [values, setValues] = useState(initialState);
 
     const [errors, setErrors] = useState({})
 
@@ -30,8 +30,27 @@ const useForm = () => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault()
-        setErrors(validateInfo(values))
+        e.preventDefault();
+        setErrors(validateInfo(values));
+
+        delete values.focus;
+
+        if(validateInfo(values).variant==="success"){
+          fetch('http://localhost:3030/api', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+            },
+          body: JSON.stringify(values)
+          }).then(function (response)  { response.json().then(function(data) {
+              console.log(data);
+              });
+        });
+          setValues(initialState);
+        }
+
     };
     
     return { handleChange, handleFocus, handleSubmit, values, errors };

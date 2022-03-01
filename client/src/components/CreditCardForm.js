@@ -19,24 +19,10 @@ const CreditCardForm = () => {
             cvc={values.cardSecurityCode}
             expiry={values.cardExpiration}
             focused={values.focus}
-            name={values.cardName}
             number={values.cardNumber}
           />
           </div>
           <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                id="cardName"
-                data-testid="cardName"
-                name="cardName"
-                placeholder="Cardholder Name"
-                value={values.cardName}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                isValid={errors.cname}
-              />
-            </Form.Group>
             <Form.Group>
               <Form.Control
                 type="number"
@@ -55,29 +41,29 @@ const CreditCardForm = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    name="cardType"
-                    id="cardType"
-                    data-testid="cardType"
-                    placeholder="Card Type"
-                    value={values.cardType}
+                    id="cardExpiration"
+                    data-testid="cardExpiration"
+                    name="cardExpiration"
+                    placeholder="MM/YYYY Expiration Date"
+                    value={values.cardExpiration}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                    isValid={errors.ctype}
+                    isValid={errors.cexp}
                   />
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group>
                   <Form.Control
-                    type="text"
-                    id="cardExpiration"
-                    data-testid="cardExpiration"
-                    name="cardExpiration"
-                    placeholder="Expiration Date"
-                    value={values.cardExpiration}
+                    type="number"
+                    id="cardSecurityCode"
+                    data-testid="cardSecurityCode"
+                    name="cardSecurityCode"
+                    placeholder="CVV"
+                    value={values.cardSecurityCode}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                    isValid={errors.cexp}
+                    isValid={errors.ccvv}
                   />
                 </Form.Group>
               </Col>
@@ -87,29 +73,14 @@ const CreditCardForm = () => {
                 <Form.Group>
                   <Form.Control
                     type="number"
-                    id="cardSecurityCode"
-                    data-testid="cardSecurityCode"
-                    name="cardSecurityCode"
-                    placeholder="Security Code"
-                    value={values.cardSecurityCode}
+                    id="cardAmount"
+                    data-testid="cardAmount"
+                    name="cardAmount"
+                    placeholder="Amount"
+                    value={values.cardAmount}
                     onChange={handleChange}
                     onFocus={handleFocus}
-                    isValid={errors.ccvv}
-                  />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group>
-                  <Form.Control
-                    type="text"
-                    id="cardPostalCode"
-                    data-testid="cardPostalCode"
-                    name="cardPostalCode"
-                    placeholder="Postal Code"
-                    value={values.cardPostalCode}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    isValid={errors.cpostal}
+                    isValid={errors.camount}
                   />
                 </Form.Group>
               </Col>
@@ -120,7 +91,7 @@ const CreditCardForm = () => {
               id="validateButton"
               type="submit"
             >
-              Validate
+              Pay
             </Button>
           </Form>
           </div>
